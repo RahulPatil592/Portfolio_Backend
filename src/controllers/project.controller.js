@@ -2,7 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Project } from "../models/project.model.js";
-import mongoose from "mongoose";
+
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 
@@ -39,12 +39,14 @@ const addProject = asyncHandler(async (req, res) => {
     if (!name || !description || !category || !tags) {
         throw new ApiError(400, "All fields are required")
     }
+    const tagsArray=tags.split(" ");
     const existedProject = await Project.findOne({ name })
     if (existedProject) {
         throw new ApiError(409, "User already exist")
     }
-    const coverImageLocalPath = req.files?.coverImage[0]?.path
 
+    const coverImageLocalPath = req.files?.coverImage[0]?.path
+   
     if (!coverImageLocalPath) {
         throw new ApiError(400, "Cover Image is required")
     }
@@ -68,7 +70,7 @@ const addProject = asyncHandler(async (req, res) => {
             coverImage: coverImage.url,
             screenShots: screenShotUrls,
             category,
-            tags
+            tags:tagsArray
         }
     )
    
