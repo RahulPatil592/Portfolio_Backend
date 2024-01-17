@@ -1,0 +1,25 @@
+version: '1'
+services:
+  redis:
+
+    image: redis
+    container_name: redis-server
+    ports: 
+      - 6379:6379
+    # volumes:  
+
+    #   - /path/to/redis.conf:/tmp/redis.conf
+
+    # command: [ "redis-server", "/tmp/redis.conf"]
+
+  node-server:
+    container_name: node-server
+    image: mynode-server:0.0.9.RELEASE
+    build: ./
+    ports:
+      - 8000:8000
+    depends_on:
+      - redis
+    links:
+      - redis
+   

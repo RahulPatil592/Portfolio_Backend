@@ -3,10 +3,10 @@ import { upload } from "../middlewares/multer.middleware.js";
 import { addTestimony, getTestimonials } from "../controllers/testimony.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
-const router=Router();
+const router = Router();
 
-router.route("/add-testimony").post(verifyJWT,upload.single("profileImage"),addTestimony)
+router.route("/add-testimony").post(verifyJWT, upload.single("profileImage"), addTestimony)
 
-router.route("/get-testimonials").get(getTestimonials)
+router.route("/get-testimonials").get(cache("testimonyData"),getTestimonials)
 
 export default router

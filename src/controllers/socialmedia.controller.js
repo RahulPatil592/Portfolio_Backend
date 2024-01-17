@@ -30,7 +30,7 @@ const addSocialMedia = asyncHandler(async (req, res) => {
         }
 
     )
-
+    client.del("socialMediaData")
     return res.
         status(200)
         .json(
@@ -39,17 +39,21 @@ const addSocialMedia = asyncHandler(async (req, res) => {
 })
 
 
-const getSocialMedia=asyncHandler(async(req,res)=>{
-    const socialMedia=await SocialMedia.find();
+const getSocialMedia = asyncHandler(async (req, res) => {
+    const socialMedia = await SocialMedia.find();
+    
+    const newDataVal=socialMedia;
+    const dataToStore=JSON.stringify(newDataVal);
+    client.set("socialMediaData",dataToStore)
     return res
-    .status(200)
-    .json(
-        new ApiResponse(200,socialMedia)
-    )
+        .status(200)
+        .json(
+            new ApiResponse(200, socialMedia)
+        )
 })
 
 
-export{
+export {
     addSocialMedia,
     getSocialMedia
 }

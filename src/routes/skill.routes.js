@@ -3,12 +3,12 @@ import { upload } from "../middlewares/multer.middleware.js";
 import { addSkill, getSkills } from "../controllers/skill.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
-const router=Router();
+const router = Router();
 
 router.route("/add-skill").post(verifyJWT,
     upload.single("displayImage"),
     addSkill
 )
 
-router.route("/get-skills").get(getSkills)
+router.route("/get-skills").get(cache("skilltData"),getSkills)
 export default router

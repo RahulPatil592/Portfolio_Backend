@@ -1,28 +1,28 @@
-import mongoose,{Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const testimonialSchema=new Schema(
+const testimonialSchema = new Schema(
     {
-        name:{
-            type:String,
-            required:true
+        name: {
+            type: String,
+            required: true
         },
-        profession:{
-            type:String,
-            required:true
+        profession: {
+            type: String,
+            required: true
         },
-        content:{
-            type:String,
-            required:true
+        content: {
+            type: String,
+            required: true
         },
-        profileImage:{
-            type:String,
-            default:""
+        profileImage: {
+            type: String,
+            default: ""
         }
     },
     {
-        timestamps:true
+        timestamps: true
     }
 )
 
 
-export const Testimony=mongoose.model("Testimony",testimonialSchema)
+export const Testimony = mongoose.model("Testimony", testimonialSchema)

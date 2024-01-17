@@ -32,9 +32,9 @@ const registerUser = asyncHandler(async (req, res) => {
     // check for user creation
     // return response
 
-    const { name, email,password } = req.body;
+    const { name, email, password } = req.body;
     console.log(req.body)
-    if ([name, email,password].some((field) => {
+    if ([name, email, password].some((field) => {
         field?.trim() === ""
     })) {
         throw new ApiError(400, "All fields are required")
@@ -238,7 +238,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 
 })
 
-export{
+export {
     registerUser,
     loginUser,
     logoutUser,

@@ -10,8 +10,8 @@ const skillSchema = new Schema(
         level: {
             type: String,
             required: true,
-            enum:["Basic","Intermediate","Advanced"],
-            default:"Basic"
+            enum: ["Basic", "Intermediate", "Advanced"],
+            default: "Basic"
         },
         displayImage: {
             type: String,
@@ -27,4 +27,4 @@ const skillSchema = new Schema(
         timestamps: true
     })
 
-export const Skill=mongoose.model("Skill",skillSchema)
+export const Skill = mongoose.model("Skill", skillSchema)
