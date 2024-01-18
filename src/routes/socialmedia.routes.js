@@ -2,6 +2,8 @@ import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { addSocialMedia, getSocialMedia } from "../controllers/socialmedia.controller.js";
+import { cache } from "../middlewares/cache.middleware.js";
+
 const router = Router();
 
 router.route("/add-socialmedia").post(verifyJWT, upload.single("img"), addSocialMedia)

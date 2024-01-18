@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Skill } from "../models/skill.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import client from "../../redis_client.js";
 
 const addSkill = asyncHandler(async (req, res) => {
     const { name, level, technology } = req.body;
@@ -43,7 +44,7 @@ const addSkill = asyncHandler(async (req, res) => {
 })
 
 const getSkills = asyncHandler(async (req, res) => {
-    const skills = await Skill.find();
+    
     const toSend = await Skill.aggregate(
         [
             {
@@ -56,7 +57,7 @@ const getSkills = asyncHandler(async (req, res) => {
     )
 
 
-    const newDataVal=skills;
+    const newDataVal=toSend;
     const dataToStore=JSON.stringify(newDataVal);
     client.set("skillData",dataToStore)
     return res

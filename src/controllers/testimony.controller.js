@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Testimony } from "../models/testimony.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import client from "../../redis_client.js";
 
 const addTestimony = asyncHandler(async (req, res) => {
     const { name, profession, content } = req.body;

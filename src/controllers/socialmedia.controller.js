@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { SocialMedia } from "../models/socialMedia.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import client from "../../redis_client.js";
 
 const addSocialMedia = asyncHandler(async (req, res) => {
     const { name, link } = req.body;

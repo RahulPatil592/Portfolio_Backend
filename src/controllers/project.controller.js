@@ -107,7 +107,9 @@ const getProjects = asyncHandler(async (req, res) => {
     client.set("projectData",dataToStore)
     return res
         .status(200)
-        .json([projects, categories])
+        .json(
+            new ApiResponse(200,[projects, categories],"projects received")
+            )
 })
 
 export {

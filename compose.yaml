@@ -14,7 +14,7 @@ services:
 
   node-server:
     container_name: node-server
-    image: mynode-server:0.0.9.RELEASE
+    image: mynode-server:0.0.10.RELEASE
     build: ./
     ports:
       - 8000:8000
@@ -22,4 +22,23 @@ services:
       - redis
     links:
       - redis
-   
+
+  react-server:
+    container_name: myreact-server
+    image: myreact-app:0.0.1.RELEASE
+    ports: 
+      - 3000:3000 
+    depends_on:
+      - node-server
+    links:
+      - node-server  
+  
+  nginx:
+    depends_on:
+      - node-server
+      - react-server
+    container_name: nginx
+    restart: always
+    image: mynginx
+    ports:
+      - "3050:80"
